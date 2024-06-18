@@ -85,11 +85,13 @@ const App = () => {
         flexDirection="column"
         alignItems="center"
         padding="20px"
+        className="events"
       >
         {events.map((event) => (
           <Box
             key={event.id}
             width="100%"
+            className="event"
             sx={{
               padding: "5px",
               border: "1px solid black",

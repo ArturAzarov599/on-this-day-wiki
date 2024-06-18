@@ -1,12 +1,7 @@
-// import { render, screen } from "@testing-library/react";
-// import App from "./App";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { generateUniqueId } from "./utils/generateUuid";
-
-// test("renders button with text", () => {
-// render(<Button onClick={() => {}}>Show more</Button>);
-// const buttonElement = screen.getByText(/Show more/i);
-// expect(buttonElement).toBe(HTMLElement);
-// });
+import { Button } from "@mui/material";
+import React from "react";
 
 test("check generateUniqueId", () => {
   const uuid = generateUniqueId();
@@ -14,15 +9,16 @@ test("check generateUniqueId", () => {
   expect(uuid).toHaveLength(15);
 });
 
-// test("calls onClick handler when clicked", () => {
-//   // const handleClick = jest.fn();
-//   // render(<Button onClick={handleClick}>Click Me</Button>);
-//   // const buttonElement = screen.getByText(/Click Me/i);
-//   // fireEvent.click(buttonElement);
-//   // expect(handleClick).toHaveBeenCalledTimes(1);
+test("renders button with text", () => {
+  render(<Button onClick={() => {}}>Show more</Button>);
+  const buttonElement = screen.getByText(/Show more/i);
+  expect(buttonElement).toBeInstanceOf(HTMLElement);
+});
 
-//   render(<App />);
-
-//   const buttonElement = screen.getByText(/Show more/i);
-//   expect(buttonElement).toBe(HTMLElement);
-// });
+test("calls onClick handler when clicked", () => {
+  const handleClick = jest.fn();
+  render(<Button onClick={handleClick}>Click Me</Button>);
+  const buttonElement = screen.getByText(/Click Me/i);
+  fireEvent.click(buttonElement);
+  expect(handleClick).toHaveBeenCalledTimes(1);
+});
